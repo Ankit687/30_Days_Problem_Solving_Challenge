@@ -1,43 +1,46 @@
 #include <iostream>
 using namespace std;
+#define ll long long
+
+void rotate(ll arr[], ll l, ll r);
 
 int main() {
-	int t;
-	cin >> t;
+	ll T;
+	cin >> T;
 	
-	while(t > 0)
+	while(T--)
 	{
-	    int size, rotateValue, tmp;
-	    cin >> size, rotateValue;
+	    ll n, d;
+	    cin >> n >> d;
 	    
-	    int arr[size];
+	    ll arr[n];
 	    
-	    for(int i = 0; i < size; i++)
+	    for(ll i = 0; i < n; i++)
 	    {
 	        cin >> arr[i];
 	    }
 	    
+	    rotate(arr, 0, d-1);
+	    rotate(arr, d, n-1);
+	    rotate(arr, 0, n-1);
 	    
-	    while(rotateValue > 0)
+	    for(ll i = 0; i < n; i++)
 	    {
-	        tmp = arr[0];
-	        
-	        for(int i = 0; i <= size - 2; i++)
-	        {
-	            arr[i] = arr[i+1];
-	        }
-	        
-	        arr[size - 1] = tmp;
-	        
-	        rotateValue--;
+	        cout << arr[i] << " ";    
 	    }
 	    
-	    for(int i = 0; i < size; i++)
-	    {
-	        cout << arr[i] << " ";
-	    }
-	    
-	    t--;
+	    cout << endl;
 	}
+	
 	return 0;
+}
+
+void rotate(ll arr[], ll l, ll r)
+{
+    while(l < r)
+    {
+        swap(arr[l], arr[r]);
+        l++;
+        r--;
+    }
 }
